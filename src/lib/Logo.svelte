@@ -45,7 +45,6 @@
 <svg
 	xmlns="http://www.w3.org/2000/svg"
 	class="logo"
-	class:animated__hover={animationOn === 'hover'}
 	{width}
 	{height}
 	viewBox="0 0 80 16"
@@ -54,10 +53,10 @@
 	<title>Tiger Oakes</title>
 
 	{#if animationOn === 'hover'}
-		<g class="face animated">
+		<g class="face anim">
 			<Face monochrome={true} />
 		</g>
-		<g class="face animated">
+		<g class="face anim">
 			<Face monochrome={false} />
 		</g>
 	{:else}
@@ -71,8 +70,8 @@
 	{#each getAnimatedText(animationOn) as { opacity, delay, animated = true }}
 		<g
 			class="text"
-			class:animated
-			class:animated__mount={animated && animationOn === 'mount'}
+			class:anim={animated}
+			class:anim--mount={animated && animationOn === 'mount'}
 			fill="none"
 			stroke="currentColor"
 			{opacity}
@@ -125,31 +124,27 @@
 		}
 	}
 
-	.animated.face {
+	.anim.face {
 		transition: opacity 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 	@media (prefers-reduced-motion: no-preference) {
-		.animated.text path {
+		.anim.text path {
 			stroke-dasharray: 25;
 			stroke-dashoffset: calc(calc(1 - var(--logo-animation-progress, 0)) * 25px);
 			transition: stroke-dashoffset 0.5s linear;
 		}
-		.animated__mount.text path {
+		.anim--mount.text path {
 			animation: wire 1s linear forwards;
 		}
 
-		.animated.face {
+		.anim.face {
 			transition-duration: 0.3s;
 		}
-		.animated.face:nth-of-type(1) {
+		.anim.face:nth-of-type(1) {
 			opacity: calc(1 - var(--logo-animation-progress, 0));
 		}
-		.animated.face:nth-of-type(2) {
+		.anim.face:nth-of-type(2) {
 			opacity: var(--logo-animation-progress, 0);
 		}
-	}
-
-	.logo.animated__hover:hover {
-		--logo-animation-progress: 1;
 	}
 </style>

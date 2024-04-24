@@ -16,8 +16,8 @@
 	{#if monochrome}
 		<rect class="outline" width="13" height="13" x="1.5" y="1.5" />
 	{/if}
-	<circle class="eye" class:animated={animateEyes} cx="5" cy="6" r="1.5" />
-	<circle class="eye" class:animated={animateEyes} cx="11" cy="6" r="1.5" />
+	<circle class="eye" class:anim={animateEyes} cx="5" cy="6" r="1.5" />
+	<circle class="eye" class:anim={animateEyes} cx="11" cy="6" r="1.5" />
 	{#if animateEyes}
 		<path class="eye-closed" d="M3 6h4" />
 		<path class="eye-closed" d="M9 6h4" />
@@ -55,7 +55,7 @@
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
-		.animated.eye,
+		.anim.eye,
 		.eye-closed {
 			animation: open 0.5s steps(3, jump-none) 2.5s both;
 		}

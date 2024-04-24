@@ -13,7 +13,7 @@
 	</thead>
 	<tbody>
 		{#each Object.entries(LOGO_PRESETS) as [file, args]}
-			<tr>
+			<tr class:onhover={file.includes('on-hover')}>
 				<th>
 					{file}
 				</th>
@@ -27,3 +27,9 @@
 		{/each}
 	</tbody>
 </table>
+
+<style>
+	.onhover td:hover {
+		--logo-animation-progress: 1;
+	}
+</style>
