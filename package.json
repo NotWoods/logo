@@ -1,6 +1,6 @@
 {
 	"name": "@notwoods/logo",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -17,6 +17,10 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./Logo.svelte": {
+			"types": "./dist/Logo.svelte.d.ts",
+			"svelte": "./dist/Logo.svelte"
 		},
 		"./svg/*.svg": "./svg/*.svg"
 	},
