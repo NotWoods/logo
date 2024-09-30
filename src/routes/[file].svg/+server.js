@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { render } from 'svelte/server';
 import { optimize } from 'svgo';
 import Logo from '../../lib/Logo.svelte';
 import { LOGO_PRESETS } from './presets.js';
@@ -17,10 +18,9 @@ export function GET({ params }) {
 		error(404, 'Not found');
 	}
 
-	// @ts-ignore
-	const { html, css } = Logo.render(args);
+	const { html, head } = render(Logo, args);
 
-	const svg = html.replace('</svg>', `<style>${css.code}</style></svg>`);
+	const svg = html.replace('</svg>', `${head}</svg>`);
 	const optimized = optimize(svg, {
 		path: `${params.file}.svg`
 	});

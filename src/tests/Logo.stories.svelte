@@ -1,8 +1,8 @@
-<script context="module">
+<script module>
+	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Logo from '../lib/Logo.svelte';
 
-	/** @type {import('@storybook/svelte').Meta<Logo>} */
-	export const meta = {
+	const { Story } = defineMeta({
 		component: Logo,
 		args: {
 			monochrome: false,
@@ -18,34 +18,32 @@
 				options: ['mount', 'hover', 'none']
 			}
 		}
-	};
+	});
 </script>
 
-<script>
-	import { Story, Template } from '@storybook/addon-svelte-csf';
-</script>
-
-<Template let:args>
+{#snippet template(args)}
 	<div class:anim--hover={args.animationOn === 'hover'}>
 		<Logo {...args} />
 	</div>
-</Template>
+{/snippet}
 
-<Story name="Full Color" args={{ monochrome: false }} />
-<Story name="Monochrome" args={{ monochrome: true }} />
-<Story name="Tinted" args={{ monochrome: true, color: 'red' }} />
+<Story name="Full Color" args={{ monochrome: false }} children={template} />
+<Story name="Monochrome" args={{ monochrome: true }} children={template} />
+<Story name="Tinted" args={{ monochrome: true, color: 'red' }} children={template} />
 <Story
 	name="Dark"
 	args={{ monochrome: false, color: 'white' }}
 	parameters={{ backgrounds: { default: 'dark' } }}
+	children={template}
 />
 <Story
 	name="Dark Monochrome"
 	args={{ monochrome: true, color: 'white' }}
 	parameters={{ backgrounds: { default: 'dark' } }}
+	children={template}
 />
-<Story name="Animate on hover" args={{ animationOn: 'hover' }} />
-<Story name="No Animation" args={{ animationOn: 'none' }} />
+<Story name="Animate on hover" args={{ animationOn: 'hover' }} children={template} />
+<Story name="No Animation" args={{ animationOn: 'none' }} children={template} />
 
 <style>
 	.anim--hover:hover {

@@ -1,4 +1,4 @@
-<svelte:options namespace="svg" />
+<svelte:options runes={false} namespace="svg" />
 
 <script>
 	/** @type {boolean} */
