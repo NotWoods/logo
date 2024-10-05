@@ -18,9 +18,11 @@ export function GET({ params }) {
 		error(404, 'Not found');
 	}
 
-	const { html, head } = render(Logo, args);
+	const { body, head } = render(Logo, {
+		props: args
+	});
 
-	const svg = html.replace('</svg>', `${head}</svg>`);
+	const svg = body.replace('</svg>', `${head}</svg>`);
 	const optimized = optimize(svg, {
 		path: `${params.file}.svg`
 	});
