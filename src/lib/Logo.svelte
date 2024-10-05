@@ -31,14 +31,29 @@
 		}
 	}
 
+	/**
+	 * Height of the logo in pixels. Width is automatically set to 5 times the height.
+	 */
 	export let height = 32;
 	$: width = height * 5;
 
+	/**
+	 * If true, show a single color variant of the logo.
+	 */
 	export let monochrome = false;
+	/**
+	 * Color of the logo text.
+	 * If monochrome is true, this color is also used for the icon.
+	 * @default currentColor
+	 */
 	export let color = '';
 	$: defaultColor = monochrome ? 'currentColor' : '#032030';
 
 	/**
+	 * When to animate the logo.
+	 * - 'mount': Animate the logo when it is first mounted onto the page.
+	 * - 'hover': Animate the logo when the user hovers over it. This is detected by the `--logo-animation-progress` CSS custom property.
+	 * - 'none': Do not animate the logo.
 	 * @type {'mount' | 'hover' | 'none'}
 	 */
 	export let animationOn = 'mount';
