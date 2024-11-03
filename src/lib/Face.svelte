@@ -1,12 +1,16 @@
-<svelte:options runes={false} namespace="svg" />
+<svelte:options runes={true} namespace="svg" />
 
 <script>
-	/** @type {boolean} */
-	export let monochrome;
-	/** @type {boolean} */
-	export let animateEyes = false;
+	/**
+	 * @typedef {object} Props
+	 * @property {boolean} monochrome
+	 * @property {boolean} [animateEyes]
+	 */
 
-	$: color = monochrome ? 'currentColor' : '#032030';
+	/** @type {Props} */
+	let { monochrome, animateEyes = false } = $props();
+
+	let color = $derived(monochrome ? 'currentColor' : '#032030');
 </script>
 
 {#if !monochrome}
